@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class StartScreen extends StatelessWidget {
   const StartScreen(this.switchScreen, {super.key});
@@ -26,10 +27,15 @@ class StartScreen extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          const Text(
+          Text(
             "Let learn Flutter by funny way",
-            style: TextStyle(
-                color: Color.fromARGB(255, 254, 254, 254), fontSize: 24),
+            style: GoogleFonts.lato(
+              textStyle: const TextStyle(
+                color: Colors.white,
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           ),
           const SizedBox(
             height: 20,
