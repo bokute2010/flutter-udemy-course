@@ -20,7 +20,11 @@ class _QuestionScreen extends State<QuestionScreen> {
   void answerQuestionHandler(String selectedAnswer) {
     widget.onSelectAnswer(selectedAnswer);
     setState(() {
-      currentQuestionIndex++;
+      // print(currentQuestionIndex);
+      if (currentQuestionIndex == (questions.length -1)) {
+        return;
+      }
+      currentQuestionIndex = currentQuestionIndex + 1;
     });
   }
 
@@ -53,7 +57,7 @@ class _QuestionScreen extends State<QuestionScreen> {
               (answer) {
                 return AnswerButton(
                   answerText: answer,
-                  onTap: (){
+                  onTap: () {
                     answerQuestionHandler(answer);
                   },
                 );
