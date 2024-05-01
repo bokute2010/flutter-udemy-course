@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 class StartScreen extends StatelessWidget {
   const StartScreen(this.switchScreen, {super.key});
 
-  final Function() switchScreen;
+  final Function(String screenName) switchScreen;
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +41,9 @@ class StartScreen extends StatelessWidget {
             height: 20,
           ),
           OutlinedButton.icon(
-            onPressed: switchScreen,
+            onPressed: () {
+              switchScreen('question-screen');
+            },
             style: OutlinedButton.styleFrom(foregroundColor: Colors.white),
             label: const Text('Start Quiz'),
             icon: const Icon(Icons.arrow_right_alt),

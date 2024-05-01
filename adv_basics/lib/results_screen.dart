@@ -3,9 +3,10 @@ import 'package:adv_basics/questions_summary.dart';
 import 'package:flutter/material.dart';
 
 class ResultsScreen extends StatelessWidget {
-  const ResultsScreen({super.key, required this.chosenAnswers});
+  const ResultsScreen(
+      {super.key, required this.chosenAnswers, required this.onSwitchScreen});
   final List<String> chosenAnswers;
-
+  final void Function(String screen) onSwitchScreen;
   List<Map<String, Object>> getSummaryData() {
     final List<Map<String, Object>> summary = [];
     for (var i = 0; i < chosenAnswers.length; i++) {
@@ -33,12 +34,32 @@ class ResultsScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-              'Your answered $numCorrectAnswers out of $numTotalQuestions questions correctly!'),
+            'Your answered $numCorrectAnswers out of $numTotalQuestions questions correctly!',
+            style: const TextStyle(
+              fontSize: 18,
+              color: Color.fromARGB(255, 223, 109, 244),
+              fontWeight: FontWeight.bold
+            ),
+            textAlign: TextAlign.center,
+          ),
           const SizedBox(height: 20),
-          const Text("List of answers and questions ..."),
           QuestionsSummary(summaryData),
           const SizedBox(height: 20),
-          TextButton(onPressed: () {}, child: const Text("Restart Quiz!")),
+          TextButton(
+              onPressed: () {
+                onSwitchScreen('start-screen');
+              },
+              style: TextButton.styleFrom(
+                foregroundColor: const Color.fromARGB(255, 234, 178, 244),
+              ),
+              child: const Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(Icons.rotate_right),
+                  SizedBox(width: 10),
+                  Text("Back to Start"),
+                ],
+              ))
         ],
       ),
     );
