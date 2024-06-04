@@ -7,7 +7,7 @@ class ResultsScreen extends StatelessWidget {
       {super.key, required this.chosenAnswers, required this.onSwitchScreen});
   final List<String> chosenAnswers;
   final void Function(String screen) onSwitchScreen;
-  List<Map<String, Object>> getSummaryData() {
+  List<Map<String, Object>> get summaryData {
     final List<Map<String, Object>> summary = [];
     for (var i = 0; i < chosenAnswers.length; i++) {
       summary.add({
@@ -22,11 +22,10 @@ class ResultsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final summaryData = getSummaryData();
     final numTotalQuestions = questions.length;
-    final numCorrectAnswers = summaryData.where((data) {
-      return data['correct_answer'] == data['user_answer'];
-    }).length;
+    final numCorrectAnswers = summaryData
+        .where((data) => data['correct_answer'] == data['user_answer'])
+        .length;
 
     return Container(
       margin: const EdgeInsets.all(40),
@@ -36,10 +35,9 @@ class ResultsScreen extends StatelessWidget {
           Text(
             'Your answered $numCorrectAnswers out of $numTotalQuestions questions correctly!',
             style: const TextStyle(
-              fontSize: 18,
-              color: Color.fromARGB(255, 223, 109, 244),
-              fontWeight: FontWeight.bold
-            ),
+                fontSize: 18,
+                color: Color.fromARGB(255, 223, 109, 244),
+                fontWeight: FontWeight.bold),
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 20),
