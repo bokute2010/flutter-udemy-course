@@ -10,9 +10,8 @@ class NewExpense extends StatefulWidget {
 }
 
 class _NewExpenseState extends State<NewExpense> {
-
   final _titleController = TextEditingController();
-
+  final _amountController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -25,15 +24,21 @@ class _NewExpenseState extends State<NewExpense> {
             maxLength: 50,
             decoration: const InputDecoration(labelText: 'Title'),
           ),
+          TextField(
+            controller: _amountController,
+            keyboardType: const TextInputType.numberWithOptions(decimal: true),
+            decoration: const InputDecoration(labelText: 'Amount'),
+          ),
           Row(
             children: [
+              ElevatedButton(onPressed: () => {}, child: const Text('Cancel')),
+              const SizedBox(width: 10),
               ElevatedButton(
                 onPressed: () {
                   print(_titleController.text);
                 },
                 child: const Text('Submit'),
               ),
-              
             ],
           ),
         ],
